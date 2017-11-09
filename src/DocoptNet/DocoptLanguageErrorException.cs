@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Runtime.Serialization;
 
 namespace DocoptNet
 {
-#if NET40
-    [Serializable]
-#endif
     public class DocoptLanguageErrorException : DocoptBaseException
     {
         //
@@ -24,12 +20,5 @@ namespace DocoptNet
         public DocoptLanguageErrorException(string message, Exception inner) : base(message, inner)
         {
         }
-#if NET40
-        protected DocoptLanguageErrorException(
-            SerializationInfo info,
-            StreamingContext context) : base(info, context)
-        {
-        }
-#endif
     }
 }

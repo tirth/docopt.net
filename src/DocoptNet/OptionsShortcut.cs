@@ -5,7 +5,7 @@
     /// </summary>
     internal class OptionsShortcut : Optional
     {
-        public OptionsShortcut() : base(new Pattern[0])
+        public OptionsShortcut() : base()
         {
         }
     }

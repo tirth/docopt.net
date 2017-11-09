@@ -36,7 +36,7 @@ namespace DocoptNet
 
         public override Node ToNode()
         {
-            return new ArgumentNode(this.Name, (this.Value != null && this.Value.IsList) ? ValueType.List : ValueType.String);
+            return new ArgumentNode(this.Name, this.Value != null && this.Value.IsList ? ValueType.List : ValueType.String);
         }
 
         public override string GenerateCode()
@@ -46,7 +46,7 @@ namespace DocoptNet
 
             if (Value != null && Value.IsList)
             {
-                return string.Format("public ArrayList {0} {{ get {{ return _args[\"{1}\"].AsList; }} }}", s, Name);
+                return $"public ArrayList {s} {{ get {{ return _args[\"{Name}\"].AsList; }} }}";
             }
             return string.Format("public string {0} {{ get {{ return null == _args[\"{1}\"] ? null : _args[\"{1}\"].ToString(); }} }}", s, Name);
         }

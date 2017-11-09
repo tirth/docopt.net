@@ -28,3 +28,5 @@ _ReSharper*/
 packages/
 *.nupkg
 /_build
+
+.idea/

@@ -139,7 +139,7 @@ namespace DocoptNet
             {
                 OnPrintExit(doc);
             }
-            if (version != null && options.Any(o => (o.Name == "--version") && !o.Value.IsNullOrEmpty))
+            if (version != null && options.Any(o => o.Name == "--version" && !o.Value.IsNullOrEmpty))
             {
                 OnPrintExit(version.ToString());
             }
@@ -208,11 +208,11 @@ namespace DocoptNet
             var pu = section.Split(new char[0], StringSplitOptions.RemoveEmptyEntries);
             var join = new StringBuilder();
             join.Append("( ");
-            for (int i = 1; i < pu.Length; i++)
+            for (var i = 1; i < pu.Length; i++)
             {
                 var s = pu[i];
                 if (i > 1) join.Append(" ");
-                join.Append((s == pu[0]) ? ") | (" : s);
+                join.Append(s == pu[0] ? ") | (" : s);
             }
             join.Append(" )");
             return join.ToString();
@@ -223,7 +223,7 @@ namespace DocoptNet
             var tokens = Tokens.FromPattern(source);
             var result = ParseExpr(tokens, options);
             if (tokens.Current() != null)
-                throw tokens.CreateException("unexpected ending: " + String.Join(" ", tokens.ToArray()));
+                throw tokens.CreateException("unexpected ending: " + string.Join(" ", tokens.ToArray()));
             return new Required(result.ToArray());
         }
 
@@ -320,7 +320,7 @@ namespace DocoptNet
                     {
                         return ParseShorts(tokens, options);
                     }
-                    if ((token.StartsWith("<") && token.EndsWith(">")) || token.All(c => Char.IsUpper(c)))
+                    if (token.StartsWith("<") && token.EndsWith(">") || token.All(char.IsUpper))
                     {
                         result.Add(new Argument(tokens.Move()));
                     }
@@ -339,27 +339,25 @@ namespace DocoptNet
 
             var token = tokens.Move();
             Debug.Assert(token.StartsWith("-") && !token.StartsWith("--"));
-            var left = token.TrimStart(new[] {'-'});
+            var left = token.TrimStart('-');
             var parsed = new List<Pattern>();
             while (left != "")
             {
                 var shortName = "-" + left[0];
                 left = left.Substring(1);
                 var similar = options.Where(o => o.ShortName == shortName).ToList();
-                Option option = null;
+                Option option;
+                
                 if (similar.Count > 1)
-                {
-                    throw tokens.CreateException(string.Format("{0} is specified ambiguously {1} times", shortName,
-                        similar.Count));
-                }
+                    throw tokens.CreateException($"{shortName} is specified ambiguously {similar.Count} times");
+                
                 if (similar.Count < 1)
                 {
-                    option = new Option(shortName, null, 0);
+                    option = new Option(shortName);
                     options.Add(option);
+                    
                     if (tokens.ThrowsInputError)
-                    {
                         option = new Option(shortName, null, 0, new ValueObject(true));
-                    }
                 }
                 else
                 {
@@ -371,9 +369,8 @@ namespace DocoptNet
                         if (left == "")
                         {
                             if (tokens.Current() == null || tokens.Current() == "--")
-                            {
                                 throw tokens.CreateException(shortName + " requires argument");
-                            }
+                            
                             value = new ValueObject(tokens.Move());
                         }
                         else
@@ -402,13 +399,12 @@ namespace DocoptNet
             {
                 // If not exact match
                 similar =
-                    options.Where(o => !String.IsNullOrEmpty(o.LongName) && o.LongName.StartsWith(longName)).ToList();
+                    options.Where(o => !string.IsNullOrEmpty(o.LongName) && o.LongName.StartsWith(longName)).ToList();
             }
             if (similar.Count > 1)
             {
                 // Might be simply specified ambiguously 2+ times?
-                throw tokens.CreateException(string.Format("{0} is not a unique prefix: {1}?", longName,
-                    string.Join(", ", similar.Select(o => o.LongName))));
+                throw tokens.CreateException($"{longName} is not a unique prefix: {string.Join(", ", similar.Select(o => o.LongName))}?");
             }
             Option option = null;
             if (similar.Count < 1)
@@ -453,7 +449,7 @@ namespace DocoptNet
                 var optionsText = p.RightString;
                 var a = Regex.Split("\n" + optionsText, @"\r?\n[ \t]*(-\S+?)");
                 var split = new List<string>();
-                for (int i = 1; i < a.Length - 1; i += 2)
+                for (var i = 1; i < a.Length - 1; i += 2)
                 {
                     var s1 = a[i];
                     var s2 = a[i + 1];
@@ -469,7 +465,7 @@ namespace DocoptNet
         {
             var pattern = new Regex(@"^([^\r\n]*" + name + @"[^\r\n]*\r?\n?(?:[ \t].*?(?:\r?\n|$))*)",
                 RegexOptions.IgnoreCase | RegexOptions.Multiline);
-            return (from Match match in pattern.Matches(source) select match.Value.Trim()).ToArray();
+            return pattern.Matches(source).Cast<Match>().Select(match => match.Value.Trim()).ToArray();
         }
     }
 

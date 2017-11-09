@@ -10,20 +10,14 @@ namespace DocoptNet
     {
         public ValueObject Value { get; set; }
 
-        public virtual string Name
-        {
-            get { return ToString(); }
-        }
+        public virtual string Name 
+            => ToString();
 
-        public virtual string GenerateCode()
-        {
-            return "// No code for " + Name;
-        }
+        public virtual string GenerateCode() 
+            => "// No code for " + Name;
 
-        public virtual Node ToNode()
-        {
-            return null;
-        }
+        public virtual Node ToNode() 
+            => null;
 
         // override object.Equals
         public override bool Equals(object obj)
@@ -35,24 +29,15 @@ namespace DocoptNet
             //   http://go.microsoft.com/fwlink/?LinkId=85238
             //
 
-            if (obj == null || GetType() != obj.GetType())
-            {
-                return false;
-            }
-
-            return ToString() == obj.ToString();
+            return obj?.GetType() == GetType() && obj.ToString() == ToString();
         }
 
-// override object.GetHashCode
-        public override int GetHashCode()
-        {
-            return ToString().GetHashCode();
-        }
+        // override object.GetHashCode
+        public override int GetHashCode() 
+            => ToString().GetHashCode();
 
-        public virtual bool HasChildren
-        {
-            get { return false; }
-        }
+        public virtual bool HasChildren 
+            => false;
 
         public IList<Pattern> Children { get; set; }
 
@@ -70,7 +55,7 @@ namespace DocoptNet
         public void FixIdentities(ICollection<Pattern> uniq = null)
         {
             var listUniq = uniq ?? Flat().Distinct().ToList();
-            for (int i = 0; i < Children.Count; i++)
+            for (var i = 0; i < Children.Count; i++)
             {
                 var child = Children[i];
                 if (!child.HasChildren)

@@ -45,11 +45,8 @@ namespace DocoptNet
 
         public override string ToString()
         {
-            return string.Format("matched={0} left=[{1}], collected=[{2}]",
-                Matched,
-                Left == null ? "" : string.Join(", ", Left.Select(p => p.ToString())),
-                Collected == null ? "" : string.Join(", ", Collected.Select(p => p.ToString()))
-            );
+            return
+                $"matched={Matched} left=[{(Left == null ? "" : string.Join(", ", Left.Select(p => p.ToString())))}], collected=[{(Collected == null ? "" : string.Join(", ", Collected.Select(p => p.ToString())))}]";
         }
     }
 }

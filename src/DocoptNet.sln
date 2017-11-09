@@ -1,14 +1,12 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26114.2
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".paket", ".paket", "{78331D52-9B59-4779-933C-EFE1C19D0D2B}"
 	ProjectSection(SolutionItems) = preProject
 		..\paket.dependencies = ..\paket.dependencies
 	EndProjectSection
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DocoptNet", "DocoptNet\DocoptNet.xproj", "{D87F19B8-A15F-4BC2-8E1C-47CC6038A0DF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocoptNet.Tests", "DocoptNet.Tests\DocoptNet.Tests.csproj", "{80A9BB30-873C-47E9-8314-5E53AC66E8B7}"
 EndProject
@@ -34,6 +32,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{B5A8AA26
 		NuGet\Main.usage.txt = NuGet\Main.usage.txt
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocoptNet", "DocoptNet\DocoptNet.csproj", "{E54967CE-B66B-4B84-9415-A3B2109C05CD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,20 +42,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|Mixed Platforms = Release|Mixed Platforms
 		Release|x86 = Release|x86
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D87F19B8-A15F-4BC2-8E1C-47CC6038A0DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D87F19B8-A15F-4BC2-8E1C-47CC6038A0DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D87F19B8-A15F-4BC2-8E1C-47CC6038A0DF}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{D87F19B8-A15F-4BC2-8E1C-47CC6038A0DF}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{D87F19B8-A15F-4BC2-8E1C-47CC6038A0DF}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{D87F19B8-A15F-4BC2-8E1C-47CC6038A0DF}.Debug|x86.Build.0 = Debug|Any CPU
-		{D87F19B8-A15F-4BC2-8E1C-47CC6038A0DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D87F19B8-A15F-4BC2-8E1C-47CC6038A0DF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D87F19B8-A15F-4BC2-8E1C-47CC6038A0DF}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{D87F19B8-A15F-4BC2-8E1C-47CC6038A0DF}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{D87F19B8-A15F-4BC2-8E1C-47CC6038A0DF}.Release|x86.ActiveCfg = Release|Any CPU
-		{D87F19B8-A15F-4BC2-8E1C-47CC6038A0DF}.Release|x86.Build.0 = Release|Any CPU
 		{80A9BB30-873C-47E9-8314-5E53AC66E8B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{80A9BB30-873C-47E9-8314-5E53AC66E8B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{80A9BB30-873C-47E9-8314-5E53AC66E8B7}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -96,6 +86,18 @@ Global
 		{5A641DFB-CB1A-4044-AF52-554CC8904449}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{5A641DFB-CB1A-4044-AF52-554CC8904449}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{5A641DFB-CB1A-4044-AF52-554CC8904449}.Release|x86.ActiveCfg = Release|Any CPU
+		{E54967CE-B66B-4B84-9415-A3B2109C05CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E54967CE-B66B-4B84-9415-A3B2109C05CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E54967CE-B66B-4B84-9415-A3B2109C05CD}.Debug|x64.ActiveCfg = Debug|x64
+		{E54967CE-B66B-4B84-9415-A3B2109C05CD}.Debug|x64.Build.0 = Debug|x64
+		{E54967CE-B66B-4B84-9415-A3B2109C05CD}.Debug|x86.ActiveCfg = Debug|x86
+		{E54967CE-B66B-4B84-9415-A3B2109C05CD}.Debug|x86.Build.0 = Debug|x86
+		{E54967CE-B66B-4B84-9415-A3B2109C05CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E54967CE-B66B-4B84-9415-A3B2109C05CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E54967CE-B66B-4B84-9415-A3B2109C05CD}.Release|x64.ActiveCfg = Release|x64
+		{E54967CE-B66B-4B84-9415-A3B2109C05CD}.Release|x64.Build.0 = Release|x64
+		{E54967CE-B66B-4B84-9415-A3B2109C05CD}.Release|x86.ActiveCfg = Release|x86
+		{E54967CE-B66B-4B84-9415-A3B2109C05CD}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
